@@ -85,7 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  //Step 5
+  {
+    title: 'New',
+    date: 'Jan 1st, 2019',
+    firstParagraph: 'New',
+    secondParagraph: 'New',
+    thirdParagraph: 'New' 
+    }
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -112,3 +120,50 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+// Step 1
+function createArticle(data) {
+  //new 
+  const article = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const p = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const span = document.createElement('span');
+  
+  //class
+  article.classList.add('article');
+  p.classList.add('date');
+  span.classList.add('expandButton');
+
+  //content
+  h2.textContent = data.title;
+  p.textContent = data.date;
+  p1.textContent = data.firstParagraph;
+  p2.textContent = data.secondParagraph;
+  p3.textContent = data.thirdParagraph;
+  span.textContent = "expand";
+
+  //Setup structure
+  article.appendChild(h2);
+  article.appendChild(p);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(span);
+
+  //Step 2
+  span.addEventListener('click', () => {
+      article.classList.toggle("article-open");
+  });
+
+  //Step 3
+  return article;
+}
+
+// Step 4
+const articles = document.querySelector('.articles');
+
+data.forEach((element) => {
+  articles.appendChild(createArticle(element));
+});
